@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+  --font-display: "Cormorant Garamond", "Fraunces", ui-serif, Georgia, serif;
+
+  --color-sand-50: #fbf8f3;
+  --color-sand-100: #f5ebe0;
+  --color-sand-200: #ead9c2;
+  --color-sand-300: #d9bfa0;
+
+  --color-leaf-400: #8aa97c;
+  --color-leaf-500: #4a7c59;
+  --color-leaf-600: #3a6547;
+  --color-leaf-700: #2b4d36;
+
+  --color-ocean-400: #4a8a8a;
+  --color-ocean-500: #1f5f5f;
+  --color-ocean-600: #0d4a4a;
+  --color-ocean-700: #083333;
+  --color-ocean-900: #051f1f;
+
+  --color-sunset-300: #f0c28f;
+  --color-sunset-400: #e8a87c;
+  --color-sunset-500: #d4956a;
+  --color-sunset-600: #b8774a;
+
+  --color-ink-900: #14201d;
+  --color-ink-800: #1c2b27;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #fbf8f3;
+  color: #14201d;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: #d4956a;
+  color: #fbf8f3;
+}
+
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fbf8f3;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9bfa0;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b8774a;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-28px) rotate(-3deg); }
+}
+@keyframes drift {
+  0% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(20px,-15px,0); }
+  100% { transform: translate3d(0,0,0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes sun-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes wave {
+  0%, 100% { transform: translateX(0) scaleY(1); }
+  50% { transform: translateX(-25%) scaleY(1.05); }
+}
+
+.animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+.animate-float-slower { animation: float-slower 12s ease-in-out infinite; }
+.animate-drift { animation: drift 14s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 40s linear infinite; }
+.animate-sun-rotate { animation: sun-rotate 80s linear infinite; }
+.animate-marquee { animation: marquee 40s linear infinite; }
+.animate-wave { animation: wave 18s ease-in-out infinite; }
+
+.perspective-1000 { perspective: 1000px; }
+.perspective-1800 { perspective: 1800px; }
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #b8774a 0%,
+    #d4956a 25%,
+    #f0c28f 50%,
+    #d4956a 75%,
+    #b8774a 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+.glass {
+  background: rgba(251, 248, 243, 0.55);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glow-sunset {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(232, 168, 124, 0.55) 0%,
+    rgba(232, 168, 124, 0) 60%
+  );
+}
+
+.glow-leaf {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(74, 124, 89, 0.45) 0%,
+    rgba(74, 124, 89, 0) 60%
+  );
+}

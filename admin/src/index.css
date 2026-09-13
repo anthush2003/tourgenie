@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+
+  --color-sand-50: #fbf8f3;
+  --color-sand-100: #f5ebe0;
+  --color-sand-200: #ead9c2;
+
+  --color-leaf-500: #4a7c59;
+  --color-leaf-600: #3a6547;
+  --color-leaf-700: #2b4d36;
+
+  --color-ocean-500: #1f5f5f;
+
+  --color-sunset-400: #e8a87c;
+  --color-sunset-500: #d4956a;
+  --color-sunset-600: #b8774a;
+
+  --color-ink-900: #14201d;
+  --color-ink-800: #1c2b27;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #fbf8f3;
+  color: #14201d;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NEW: print styles for the admin Reports "Print / Save PDF" feature.
+   Hides the sidebar, mobile top bar, and toasts so only the report itself
+   (#report-print-area) ends up on the printed page / exported PDF. */
+@media print {
+  aside, .print\:hidden, nav {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+  #report-print-area {
+    break-inside: avoid-page;
+  }
+  #report-print-area > * {
+    break-inside: avoid;
+  }
+  body {
+    background: white !important;
+  }
+}
+
+/* Prevent Leaflet map controls & popups from bleeding over admin modals */
+.leaflet-pane,
+.leaflet-control {
+  z-index: 1 !important;
+}
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 2 !important;
+}
+.leaflet-popup {
+  z-index: 3 !important;
+}
+
+
